@@ -9,7 +9,6 @@
 - **T** = LQFP (Package)
 - **6** = Industrial temperature range, –40 to 85 °C (Temperature range)
 
-
 ---
 
 ## Using ST-Link with WSL
@@ -61,7 +60,7 @@ For more details, refer to the [official documentation](https://learn.microsoft.
 To compile the code for your STM32, use the following command:
 
 ```bash
-$ make all
+$arm-none-eabi-gcc main.c startup.c -T linker_script.ld -o blink.elf -mcpu=cortex-m3 -mthumb -nostdlib
 ```
 
 This command compiles `main.c` and `startup.c`, using the specified linker script and target CPU settings, to generate the `blink.elf` executable.
@@ -73,18 +72,9 @@ This command compiles `main.c` and `startup.c`, using the specified linker scrip
 To flash the compiled code onto your STM32, use OpenOCD with the following command:
 
 ```bash
-$ make flash
+$openocd -f interface/stlink.cfg -f target/stm32f1x.cfg -c "program blink.elf verify reset exit"
 ```
 
 This command connects to the STM32 via ST-Link, programs the `blink.elf` file, verifies the flash, resets the device, and then exits.
 
----
-
-## Cleaning
-
-To remove all build files:
-
-```bash
-$ make clean
-```
 ---
