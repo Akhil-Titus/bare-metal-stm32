@@ -1,5 +1,6 @@
 # Editor settings
 .vscode
+*:Zone.Identifier
 
 # Build putput
 *.o
