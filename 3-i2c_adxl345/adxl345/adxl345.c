@@ -1,4 +1,4 @@
-#include "i2c.h"
+#include "adxl345.h"
 
 
 void adxl345_module_test_function_led(void)

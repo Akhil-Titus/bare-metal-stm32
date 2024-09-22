@@ -1,23 +1,29 @@
-#include "stm32f1xx.h"
+#include "i2c.h"
 
-
-
-// #define GPIOBEN                 (1U << 3)   // enable gpio B (look into APB2 peripheral clock enable)
-// #define I2C1EN                  (1U << 21)  // enable i2c1 (look into RCC_APB1ENR)
 
 #define I2C_100KHZ              80          // check again
 // #define SD_MODE_MAX_RISE_TIME   17          // check agin
 // #define CR1_PE                  (1U << 0)   
 
 
+void i2c_module_test_function_led(void)
+{
+    const uint32_t PIN_13 = GPIO_ODR_ODR13; // Alias for pin 13
 
+    // Your code here
+    RCC->APB2ENR |= RCC_APB2ENR_IOPCEN;
 
-/*
-* Refer pin definitions in data sheet
-* Pin out
-* PB6 --scl
-* PB7 --sda
-**/
+    GPIOC->CRH |= GPIO_CRH_MODE13_0 | GPIO_CRH_MODE13_1;
+    GPIOC->CRH &= ~(GPIO_CRH_CNF13_0 | GPIO_CRH_CNF13_1);
+
+    while (1)
+    {
+        GPIOC->ODR ^= PIN_13;
+        for (int i = 0; i < 500000; i++)
+            ;
+    }
+}
+
 
 void i2c1_init(void)
 {
@@ -28,26 +34,20 @@ void i2c1_init(void)
     /* Set PB6 & PB7 output type to open drain */
     /* Set PB6 & PB7 mode to alternate functions as i2c GPIOx_CRL*/
 
-    // PB6
     // 1. first choose mode as output
     // 2. if mode is output, the cnf reg can be set to make the port alternate function
 
-    // GPIOB->CRL |= GPIO_CRL_MODE6_0 | GPIO_CRL_MODE6_1; // Output Mode "01", 10Mhz GPIOx_CRL since pins in 0 -7 range
     // PB6 mode 01
     GPIOB->CRL |= GPIO_CRL_MODE6_0;
-    GPIOB->CRL &= ~GPIO_CRL_MODE6_0;
+    GPIOB->CRL &= ~GPIO_CRL_MODE6_1;
 
-    GPIOB->CRL |= GPIO_CRL_CNF6_1 | GPIO_CRL_CNF6_1; // Open drain alternate mode 11
+    GPIOB->CRL |= GPIO_CRL_CNF6_0 | GPIO_CRL_CNF6_1; // Open drain alternate mode 11
 
-    // PB7
-    // 1. first choose mode as output
-    // 2. if mode is output, the cnf reg can be set to make the port alternate function
-    // GPIOB->CRL |= GPIO_CRL_MODE7_0 | GPIO_CRL_MODE7_1; // Output Mode "01", 10Mhz GPIOx_CRL since pins in 0 -7 range
     // PB7 mode 01
     GPIOB->CRL |= GPIO_CRL_MODE7_0;
     GPIOB->CRL &= ~GPIO_CRL_MODE7_1;
 
-    GPIOB->CRL |= GPIO_CRL_CNF7_1 | GPIO_CRL_CNF7_1; // Open drain alternate mode 11
+    GPIOB->CRL |= GPIO_CRL_CNF7_0 | GPIO_CRL_CNF7_1; // Open drain alternate mode 11
 
     /* enable pull up for PB6 & PB7 */
 
@@ -268,23 +268,4 @@ void i2c1_burst_write(char sAddr, char mAddr, int n, char* data)
 
     /* Generte stop*/
     I2C1->CR1 |= I2C_CR1_STOP;
-}
-
-
-void i2c_module_test_function_led(void)
-{
-    const uint32_t PIN_13 = GPIO_ODR_ODR13; // Alias for pin 13
-
-    // Your code here
-    RCC->APB2ENR |= RCC_APB2ENR_IOPCEN;
-
-    GPIOC->CRH |= GPIO_CRH_MODE13_0 | GPIO_CRH_MODE13_1;
-    GPIOC->CRH &= ~(GPIO_CRH_CNF13_0 | GPIO_CRH_CNF13_1);
-
-    while (1)
-    {
-        GPIOC->ODR ^= PIN_13;
-        for (int i = 0; i < 500000; i++)
-            ;
-    }
 }
