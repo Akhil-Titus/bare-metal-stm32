@@ -39,13 +39,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  17 .debug_macro  00000fc4  00000000  00000000  000104a4  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   000003e1  00000000  00000000  00011468  2**0
+ 18 .debug_line   000004a4  00000000  00000000  00011468  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    00003e13  00000000  00000000  00011849  2**0
+ 19 .debug_str    00003e18  00000000  00000000  0001190c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_frame  00000058  00000000  00000000  0001565c  2**2
+ 20 .debug_frame  00000058  00000000  00000000  00015724  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000072  00000000  00000000  000156b4  2**0
+ 21 .debug_line_str 00000077  00000000  00000000  0001577c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -79,7 +79,7 @@ Disassembly of section .text:
  800016c:	08000268 	.word	0x08000268
 
 08000170 <main>:
- * 23-22 CNF13[1:0]     --> 00  &=~(1U << 23)    &=~(1U << 22)      // set only these bits to zero
+ * 23-22 CNF13[1:0]     --> 00  &=~(1U << 23)    &=~(1U << 22)      
  * 21-20 MODE13[1:0]    --> 10     (1U << 21)    &=~(1U << 20)
  */
 

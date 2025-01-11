@@ -19,3 +19,6 @@ int main(void)
             ;
     }
 }
+
+
+// arm-none-eabi-gcc main.c startup.c ../vendor/STM32F1/Source/Templates/system_stm32f1xx.c -T linker_script.ld -o blink.elf -I ../vendor/CMSIS/CMSIS/Core/Include -I ../vendor/STM32F1/Include -mcpu=cortex-m3 -mthumb -nostdlib -DSTM32F103x6
