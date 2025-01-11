@@ -42,8 +42,8 @@
 								</option>
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.option.includepaths.2024921354" name="Include paths (-I)" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.option.includepaths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="../Inc"/>
-									<listOptionValue builtIn="false" value="&quot;/home/akhiltitus/Documents/Embedded systems/stm32_code/chip_headers/CMSIS/Device/ST/STM32F1xx/Include&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;/home/akhiltitus/Documents/Embedded systems/stm32_code/chip_headers/CMSIS/Include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Users\Akhil\Documents\personal-projects\bare-metal-stm32\chip_headers\CMSIS\Include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Users\Akhil\Documents\personal-projects\bare-metal-stm32\chip_headers\CMSIS\Device\ST\STM32F1xx\Include&quot;"/>
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c.1974393394" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c"/>
 							</tool>
@@ -165,4 +165,5 @@
 			<autodiscovery enabled="false" problemReportingEnabled="true" selectedProfileId=""/>
 		</scannerConfigBuildInfo>
 	</storageModule>
+	<storageModule moduleId="refreshScope"/>
 </cproject>
