@@ -1,0 +1,38 @@
+# Build and object files
+**/Debug
+**/Release
+**/build
+**/output
+
+# CubeIDE settings
+/.settings/
+/.cproject
+/.project
+/.loadpath
+
+# Generated files
+*.bin
+*.elf
+*.hex
+*.map
+*.srec
+*.lst
+*.o
+*.d
+
+# Logs
+*.log
+
+# Backup and temporary files
+*.bak
+*.swp
+*.tmp
+*.~*
+
+# Other IDE-specific files
+/metadata/
+/.ipr
+*.launch
+
+# Windows specific files
+Thumbs.db
