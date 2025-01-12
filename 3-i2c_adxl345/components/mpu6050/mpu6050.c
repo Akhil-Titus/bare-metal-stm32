@@ -5,9 +5,10 @@
  *      Author: Akhil
  */
 
-#include <mpu6050.h>
-#include "i2c.h"
+#include "mpu6050.h"
+
 #include <stdio.h>
+#include "i2c.h"
 
 char data;
 uint8_t data_rec[6];

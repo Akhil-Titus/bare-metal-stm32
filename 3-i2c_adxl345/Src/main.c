@@ -1,8 +1,8 @@
-#include <mpu6050.h>
 #include "stm32f1xx.h"
-#include "i2c.h"
 #include <stdint.h>
 #include <stdio.h>
+#include "i2c.h"
+#include "mpu6050.h"
 
 
 
