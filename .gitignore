@@ -30,9 +30,12 @@
 *.~*
 
 # Other IDE-specific files
-/metadata/
+**/.metadata/
 /.ipr
 *.launch
 
 # Windows specific files
 Thumbs.db
+
+
+**/.settings
