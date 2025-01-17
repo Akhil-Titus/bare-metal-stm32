@@ -179,11 +179,33 @@ void i2c_write(char i2c, char address, char data[])
     i2c_stop(i2c);
 }
 
-
-
-
-
-
+char i2c_read(char i2c, char ACK_NACK)
+{
+    char temp;
+    if (i2c == 1)
+    {
+        I2C1->CR1 |= I2C_CR1_ACK;
+        while (!(I2C1->SR1 & I2C_SR1_RXNE))
+            ;
+        temp = I2C1->DR;
+        if (ACK_NACK)
+        {
+            I2C1->CR1 &= ~I2C_CR1_ACK;
+        }
+    }
+    else if (i2c == 2)
+    {
+        I2C2->CR1 |= I2C_CR1_ACK;
+        while (!(I2C2->SR1 & I2C_SR1_RXNE))
+            ;
+        temp = I2C2->DR;
+        if (ACK_NACK)
+        {
+            I2C2->CR1 &= ~I2C_CR1_ACK;
+        }
+    }
+    return temp;
+}
 
 
 

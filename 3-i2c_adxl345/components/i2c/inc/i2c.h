@@ -20,6 +20,8 @@ void i2c_init(char i2c, unsigned short speed_mode);
 
 void i2c_write(char i2c, char address, char data[]);
 
+char i2c_read(char i2c, char ACK_NACK);
+
 // void i2c1_init(void);
 
 // void i2c1_byte_read(char sAddr, char mAddr, char *data);
