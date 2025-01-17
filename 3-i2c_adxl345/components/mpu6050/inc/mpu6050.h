@@ -376,9 +376,9 @@
 #define FALSE 0
 #endif
 
-void mpu6050_module_test_function_led(void);
+// void mpu6050_module_test_function_led(void);
 
-bool mpu6050_test_connection();
+// bool mpu6050_test_connection();
 
 #endif
 

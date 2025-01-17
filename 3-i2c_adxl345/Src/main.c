@@ -9,6 +9,6 @@
 int main(void)
 {
 
-    i2c1_init();
-    mpu6050_test_connection();
+    i2c_init(1, I2C_FM);
+    // mpu6050_test_connection();
 }

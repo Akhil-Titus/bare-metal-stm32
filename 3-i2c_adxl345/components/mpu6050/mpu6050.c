@@ -9,6 +9,7 @@
 
 #include <stdio.h>
 #include "i2c.h"
+#include <stdint.h>
 
 char data;
 uint8_t data_rec[6];
@@ -54,7 +55,7 @@ void mpu6050_read_bits(uint8_t slaveAddr, uint8_t regAddr, uint8_t bitStart, uin
 {
     uint8_t tmp;
     // Reading one byte from the register
-    i2c1_burst_read(slaveAddr, regAddr, 1, (char *)&tmp); // Ensure `tmp` is passed as a pointer
+    // i2c1_burst_read(slaveAddr, regAddr, 1, (char *)&tmp); // Ensure `tmp` is passed as a pointer
 
     uint8_t mask = ((1 << length) - 1) << (bitStart - length + 1);
     tmp &= mask;                     // Apply mask to isolate the bits
