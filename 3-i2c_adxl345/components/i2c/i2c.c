@@ -65,56 +65,119 @@ void i2c_init(char i2c, unsigned short speed_mode)
     }
 }
 
+void i2c_start(char i2c)
+{
+    if (i2c == 1)
+    {
+        I2C1->CR1 |= I2C_CR1_START;
+        while (!(I2C1->SR1 & 1))
+        {
+        }; // wait
+    }
+    else if (i2c == 2)
+    {
+        I2C2->CR1 |= I2C_CR1_START;
+        while (!(I2C2->SR1 & 1))
+        {
+        }; // wait
+    }
+}
 
+// sending address + R/W
+void i2c_address(char i2c, char address, char RW)
+{
+    volatile int tmp;
+    if (i2c == 1)
+    {
+        I2C1->DR = (address | RW);
 
+        while (!(I2C1->SR1 & I2C_SR1_ADDR))
+        {
+        }; /* wait until addr flag is set*/
 
+        while ((I2C1->SR1 & I2C_SR1_ADDR))
+        {
+            tmp = I2C1->SR1;
+            tmp = I2C1->SR2;
+            if ((I2C1->SR1 & I2C_SR1_ADDR))
+            {
+                break;
+            }
+        }
+    }
+    else if (i2c == 2)
+    {
+        I2C1->DR = (address | RW);
 
+        while (!(I2C2->SR1 & I2C_SR1_ADDR))
+        {
+        }; /* wait until addr flag is set*/
 
+        while ((I2C2->SR1 & I2C_SR1_ADDR))
+        {
+            tmp = I2C2->SR1;
+            tmp = I2C2->SR2;
+            if ((I2C2->SR1 & I2C_SR1_ADDR))
+            {
+                break;
+            }
+        }
+    }
+}
 
+void i2c_data_transfer(char i2c, char data)
+{
+    if (i2c == 1)
+    {
+        while (!(I2C1->SR1 & I2C_SR1_TXE))
+        {
+        };
+        I2C1->DR = data;
+        while (!(I2C1->SR1 & I2C_SR1_TXE))
+        {
+        };
+    }
+    else if (i2c == 2)
+    {
+        while (!(I2C2->SR1 & I2C_SR1_TXE))
+        {
+        };
+        I2C2->DR = data;
+        while (!(I2C2->SR1 & I2C_SR1_TXE))
+        {
+        };
+    }
+}
 
+void i2c_stop(char i2c)
+{
+    volatile int tmp;
+    if (i2c == 1)
+    {
+        tmp = I2C1->SR1;
+        tmp = I2C1->SR2; // just in case
+        I2C1->CR1 |= I2C_CR1_STOP;
+    }
+    else if (i2c == 2)
+    {
+        tmp = I2C2->SR1;
+        tmp = I2C2->SR2; // just in case
+        I2C2->CR1 |= I2C_CR1_STOP;
+    }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+void i2c_write(char i2c, char address, char data[])
+{
+    int i = 0;
+    i2c_start(i2c);
+    i2c_address(i2c, address, 0);
+    while (data[i])
+    {
+        i2c_data_transfer(i2c, data[i]);
+        i++;
+    }
+    i2c_stop(i2c);
+}
 
 
 

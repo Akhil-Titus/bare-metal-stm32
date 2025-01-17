@@ -14,9 +14,11 @@
 #define I2C_SM 0x2D
 #define I2C_FM 0xB4
 
+void i2c_module_test_function_led(void);
+
 void i2c_init(char i2c, unsigned short speed_mode);
 
-void i2c_module_test_function_led(void);
+void i2c_write(char i2c, char address, char data[]);
 
 // void i2c1_init(void);
 
